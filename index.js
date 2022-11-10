@@ -7,8 +7,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
 const { fedexApiSendPdf } = require("./fedexApi")
 
+app.get('/', (req, res) => {
+  res.send('I am fedex...');
+})
 
-app.post('/', async (req, res) => {
+app.post('/fedexUpload', async (req, res) => {
     let {AWB_NUMBER,TRANSACTION_ID,TOKEN} = req.body
     let  UploadedFile = req.files
     let respose = await fedexApiSendPdf(AWB_NUMBER, TRANSACTION_ID,TOKEN, UploadedFile)

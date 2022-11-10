@@ -8,6 +8,7 @@ exports.fedexApiSendPdf = async (awb_number,transaction_id,token,file) => {
     console.log(transaction_id)
     console.log(token)
     console.log(file)
+
     return "this is Happning";
     data.append('document', metaData);
     data.append('attachment', file);
