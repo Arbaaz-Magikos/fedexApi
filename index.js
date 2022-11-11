@@ -12,10 +12,13 @@ app.get('/', (req, res) => {
 })
 
 app.post('/fedexUpload', async (req, res) => {
-    let {AWB_NUMBER,TRANSACTION_ID,TOKEN} = req.body
-    let  UploadedFile = req.files
-    let respose = await fedexApiSendPdf(AWB_NUMBER, TRANSACTION_ID,TOKEN, UploadedFile)
-    return res.status(200).send({ message: respose });
+    let {document,token} = req.body
+    // let  UploadedFile = req.files
+    // console.log(JSON.parse(document))
+    // console.log(token)
+    // console.log(req.files)
+    let respose = await fedex(UploadedFile)
+    return res.status(200).send({ message: respose.data.errors });
   })
 
 const PORT = 8000;
